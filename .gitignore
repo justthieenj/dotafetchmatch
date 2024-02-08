@@ -1,0 +1,6 @@
+.idea
+*.iml
+.allure
+target
+build
+script
