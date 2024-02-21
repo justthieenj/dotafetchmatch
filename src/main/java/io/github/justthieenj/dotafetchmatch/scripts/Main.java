@@ -3,7 +3,7 @@ package io.github.justthieenj.dotafetchmatch.scripts;
 import io.github.justthieenj.arrakeenselenium.utils.PropertyUtils;
 import io.github.justthieenj.dotafetchmatch.dataobject.MatchResult;
 
-import static io.github.justthieenj.arrakeenselenium.driver.Arrakeen.*;
+import static io.github.justthieenj.arrakeenselenium.core.Arrakeen.*;
 import static io.github.justthieenj.dotafetchmatch.page.PageFactory.dotabuff;
 
 public class Main {

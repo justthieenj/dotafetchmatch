@@ -1,6 +1,6 @@
 package io.github.justthieenj.dotafetchmatch.page;
 
-import io.github.justthieenj.arrakeenselenium.element.ArrakeenElement;
+import io.github.justthieenj.arrakeenselenium.core.ArrakeenElement;
 import io.github.justthieenj.arrakeenselenium.utils.StringUtils;
 import io.github.justthieenj.dotafetchmatch.dataobject.MatchResult;
 import io.github.justthieenj.dotafetchmatch.enums.LineUpType;
@@ -8,8 +8,8 @@ import io.github.justthieenj.dotafetchmatch.enums.TeamSide;
 
 import java.util.List;
 
-import static io.github.justthieenj.arrakeenselenium.driver.Arrakeen.find;
-import static io.github.justthieenj.arrakeenselenium.driver.Arrakeen.finds;
+import static io.github.justthieenj.arrakeenselenium.core.Arrakeen.find;
+import static io.github.justthieenj.arrakeenselenium.core.Arrakeen.finds;
 import static io.github.justthieenj.arrakeenselenium.enums.Attribute.className;
 import static io.github.justthieenj.arrakeenselenium.enums.Attribute.href;
 import static io.github.justthieenj.dotafetchmatch.enums.LineUpType.ban;
