@@ -1,6 +1,7 @@
 package io.github.justthieenj.dotafetchmatch.scripts;
 
 import io.github.justthieenj.arrakeenselenium.utils.PropertyUtils;
+import io.github.justthieenj.dotafetchmatch.dataobject.MatchResult;
 
 import static io.github.justthieenj.arrakeenselenium.driver.Arrakeen.*;
 import static io.github.justthieenj.dotafetchmatch.page.PageFactory.dotabuff;
@@ -13,16 +14,26 @@ public class Main {
         open(url);
         sleep(1000);
         var matchResult = dotabuff().getMatchResult();
-        System.out.println(matchResult);
+        System.out.println(matchResult.beautify());
         teardown();
     }
 
-    public static void setup() {
+    private static String convertToLPMatch(MatchResult result, String team1, String team2) {
+        var str = "";
+        if (team1.equals(result.getRadiantTeam())) {
+
+        } else if (team2.equals(result.getRadiantTeam())) {
+
+        }
+        return str;
+    }
+
+    private static void setup() {
         PropertyUtils.initSystemProperties();
         initDriver();
     }
 
-    public static void teardown() {
+    private static void teardown() {
         quitDriver();
     }
 }

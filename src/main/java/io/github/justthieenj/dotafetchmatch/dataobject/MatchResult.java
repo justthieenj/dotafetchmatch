@@ -18,4 +18,22 @@ public class MatchResult {
     private String direTeam;
     private List<String> direBans;
     private List<String> direPicks;
+
+    public String beautify() {
+        return """
+                MatchResult {
+                    matchId=%s,
+                    map=%s,
+                    sideWinner=%s,
+                    teamWinner=%s,
+                    length=%s,
+                    radiantTeam=%s,
+                    radiantBans=%s,
+                    radiantPicks=%s,
+                    direTeam=%s,
+                    direBans=%s,
+                    direPicks=%s
+                }
+               """.formatted(matchId, map, sideWinner, teamWinner, length, radiantTeam, radiantBans, radiantPicks, direTeam, direBans, direPicks);
+    }
 }
