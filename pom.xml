@@ -6,7 +6,7 @@
 
     <groupId>io.github.justthieenj</groupId>
     <artifactId>dotafetchmatch</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>io.github.justthieenj</groupId>
             <artifactId>arrakeen-selenium</artifactId>
-            <version>0.1</version>
+            <version>${project.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
