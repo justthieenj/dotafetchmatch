@@ -8,14 +8,22 @@ import static io.github.justthieenj.dotafetchmatch.page.PageFactory.dotabuff;
 
 public class Main {
     public static void main(String[] args) {
-        setup();
+        try {
+            setup();
+            execute();
+        } catch (Exception ignored) {
+        } finally {
+            teardown();
+        }
+    }
+
+    private static void execute() {
         var matchId = System.getProperty("matchId", "7575939183");
         var url = "https://www.dotabuff.com/matches/" + matchId;
         open(url);
         sleep(1000);
         var matchResult = dotabuff().getMatchResult();
         System.out.println(matchResult.beautify());
-        teardown();
     }
 
     private static String convertToLPMatch(MatchResult result, String team1, String team2) {
