@@ -73,7 +73,7 @@ public class MatchResult {
             |length=%s|winner=%s
             }}
             """.formatted(team1side, team1result, team2side, team2result,
-                convertLengthFormat(length), sideWinner == TeamSide.radiant ? 1 : 2);
+                convertLengthFormat(length), teamWinner.equalsIgnoreCase(team1) ? 1 : 2);
     }
     private String convertLengthFormat(String length) {
         var split = length.split(":");
