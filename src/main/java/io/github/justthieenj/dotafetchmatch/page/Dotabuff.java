@@ -7,6 +7,7 @@ import io.github.justthieenj.dotafetchmatch.enums.LineUpType;
 import io.github.justthieenj.dotafetchmatch.enums.TeamSide;
 
 import java.util.List;
+import java.util.Map;
 
 import static io.github.justthieenj.arrakeenselenium.core.Arrakeen.find;
 import static io.github.justthieenj.arrakeenselenium.core.Arrakeen.finds;
@@ -30,7 +31,7 @@ public class Dotabuff {
 
     private String getTeam(int teamNumber) {
         var elements = finds(".head-to-head .team-text-full");
-        return elements.getTexts().get(teamNumber-1);
+        return elements.getTexts().get(teamNumber - 1);
     }
 
     private List<String> getHeroes(TeamSide side, LineUpType type) {
@@ -46,18 +47,39 @@ public class Dotabuff {
         var matchId = StringUtils.getSubstring(mapNumber.getAttribute(href), "\\d+");
         m.setMatchId(matchId);
         m.setMap(mapNumber.getText());
-        m.setTeam1(getTeam(1));
-        m.setTeam2(getTeam(2));
         var sideWinner = StringUtils.getSubstring(matchResult.getAttribute(className), "(dire|radiant)$");
         m.setSideWinner(TeamSide.valueOf(sideWinner));
         m.setTeamWinner(teamWinner.getText());
         m.setLength(duration.getText());
-        m.setRadiantTeam(getTeam(radiant));
-        m.setRadiantBans(getHeroes(radiant, ban));
-        m.setRadiantPicks(getHeroes(radiant, pick));
-        m.setDireTeam(getTeam(dire));
-        m.setDireBans(getHeroes(dire, ban));
-        m.setDirePicks(getHeroes(dire, pick));
+        var radiantTeam = getTeam(radiant);
+        var direTeam = getTeam(dire);
+
+        var team1 = getTeam(1);
+        var team2 = getTeam(2);
+
+        if (team1.equals(radiantTeam)) {
+            m.setTeam1Data(Map.of("teamName", List.of(team1),
+                    "no", List.of(String.valueOf(1)),
+                    "side", List.of(radiant.name()),
+                    "picks", getHeroes(radiant, pick),
+                    "bans", getHeroes(radiant, ban)));
+            m.setTeam2Data(Map.of("teamName", List.of(team2),
+                    "no", List.of(String.valueOf(2)),
+                    "side", List.of(dire.name()),
+                    "picks", getHeroes(dire, pick),
+                    "bans", getHeroes(dire, ban)));
+        } else {
+            m.setTeam1Data(Map.of("teamName", List.of(team1),
+                    "no", List.of(String.valueOf(1)),
+                    "side", List.of(dire.name()),
+                    "picks", getHeroes(dire, pick),
+                    "bans", getHeroes(dire, ban)));
+            m.setTeam2Data(Map.of("teamName", List.of(team2),
+                    "no", List.of(String.valueOf(2)),
+                    "side", List.of(radiant.name()),
+                    "picks", getHeroes(radiant, pick),
+                    "bans", getHeroes(radiant, ban)));
+        }
         return m;
     }
 
