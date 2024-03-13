@@ -24,14 +24,14 @@ public class Main {
         sleep(1000);
         var matchResult = dotabuff().getMatchResult();
         System.out.println(matchResult.beautify());
-        System.out.println(convertToLPMatch(matchResult, matchResult.getTeam1(), matchResult.getTeam2()));
+        System.out.println(convertToLPMatch(matchResult));
     }
 
-    private static String convertToLPMatch(MatchResult result, String team1, String team2) {
+    private static String convertToLPMatch(MatchResult result) {
         var str = "";
-        if (team1.equalsIgnoreCase(result.getRadiantTeam())) {
+        if (result.getTeam1().equalsIgnoreCase(result.getRadiantTeam())) {
             str = result.convertMapResult("radiant", "dire");
-        } else if (team2.equalsIgnoreCase(result.getRadiantTeam())) {
+        } else if (result.getTeam2().equalsIgnoreCase(result.getRadiantTeam())) {
             str = result.convertMapResult("dire", "radiant");
         }
         return str;
