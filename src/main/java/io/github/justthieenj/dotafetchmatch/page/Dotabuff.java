@@ -30,7 +30,7 @@ public class Dotabuff {
 
     private String getTeam(int teamNumber) {
         var elements = finds(".head-to-head .team-text-full");
-        return elements.getTexts().get(teamNumber);
+        return elements.getTexts().get(teamNumber-1);
     }
 
     private List<String> getHeroes(TeamSide side, LineUpType type) {
@@ -46,8 +46,8 @@ public class Dotabuff {
         var matchId = StringUtils.getSubstring(mapNumber.getAttribute(href), "\\d+");
         m.setMatchId(matchId);
         m.setMap(mapNumber.getText());
-        m.setTeam1(getTeam(0));
-        m.setTeam2(getTeam(1));
+        m.setTeam1(getTeam(1));
+        m.setTeam2(getTeam(2));
         var sideWinner = StringUtils.getSubstring(matchResult.getAttribute(className), "(dire|radiant)$");
         m.setSideWinner(TeamSide.valueOf(sideWinner));
         m.setTeamWinner(teamWinner.getText());
