@@ -25,7 +25,7 @@ public class Main {
         open(url);
         sleep(1000);
         var matchResult = dotabuff().getMatchResult();
-        System.out.println(Converter.finalConvert(matchResult));
+        System.out.println(Converter.convertToLPFormat(matchResult));
     }
 
     private static void setup() {
