@@ -3,11 +3,11 @@ package io.github.justthieenj.dotafetchmatch.page;
 import io.github.justthieenj.arrakeenselenium.core.ArrakeenElement;
 import io.github.justthieenj.arrakeenselenium.utils.StringUtils;
 import io.github.justthieenj.dotafetchmatch.dataobject.MatchResult;
+import io.github.justthieenj.dotafetchmatch.dataobject.TeamData;
 import io.github.justthieenj.dotafetchmatch.enums.LineUpType;
 import io.github.justthieenj.dotafetchmatch.enums.TeamSide;
 
 import java.util.List;
-import java.util.Map;
 
 import static io.github.justthieenj.arrakeenselenium.core.Arrakeen.find;
 import static io.github.justthieenj.arrakeenselenium.core.Arrakeen.finds;
@@ -58,27 +58,11 @@ public class Dotabuff {
         var team2 = getTeam(2);
 
         if (team1.equals(radiantTeam)) {
-            m.setTeam1Data(Map.of("teamName", List.of(team1),
-                    "no", List.of(String.valueOf(1)),
-                    "side", List.of(radiant.name()),
-                    "picks", getHeroes(radiant, pick),
-                    "bans", getHeroes(radiant, ban)));
-            m.setTeam2Data(Map.of("teamName", List.of(team2),
-                    "no", List.of(String.valueOf(2)),
-                    "side", List.of(dire.name()),
-                    "picks", getHeroes(dire, pick),
-                    "bans", getHeroes(dire, ban)));
+            m.setTeam1Data(new TeamData(1, radiantTeam, radiant, getHeroes(radiant, pick), getHeroes(radiant, ban)));
+            m.setTeam2Data(new TeamData(2, direTeam, dire, getHeroes(dire, pick), getHeroes(dire, ban)));
         } else {
-            m.setTeam1Data(Map.of("teamName", List.of(team1),
-                    "no", List.of(String.valueOf(1)),
-                    "side", List.of(dire.name()),
-                    "picks", getHeroes(dire, pick),
-                    "bans", getHeroes(dire, ban)));
-            m.setTeam2Data(Map.of("teamName", List.of(team2),
-                    "no", List.of(String.valueOf(2)),
-                    "side", List.of(radiant.name()),
-                    "picks", getHeroes(radiant, pick),
-                    "bans", getHeroes(radiant, ban)));
+            m.setTeam1Data(new TeamData(1, direTeam, dire, getHeroes(dire, pick), getHeroes(dire, ban)));
+            m.setTeam2Data(new TeamData(2, radiantTeam, radiant, getHeroes(radiant, pick), getHeroes(radiant, ban)));
         }
         return m;
     }

@@ -1,17 +1,14 @@
 package io.github.justthieenj.dotafetchmatch.utils;
 
 import io.github.justthieenj.dotafetchmatch.dataobject.MatchResult;
-
-import java.util.List;
-import java.util.Map;
+import io.github.justthieenj.dotafetchmatch.dataobject.TeamData;
 
 public class Converter {
-    private static String getLineUp(Map<String, List<String>> teamData) {
-        var no = teamData.get("no").getFirst();
-        var side = teamData.get("side").getFirst();
-        var pickHeroes = teamData.get("picks");
-        var banHeroes = teamData.get("bans");
-        var body = "|team%sside=%s".formatted(no, side);
+    private static String getLineUp(TeamData data) {
+        var no = data.getNo();
+        var pickHeroes = data.getPicks();
+        var banHeroes = data.getBans();
+        var body = "|team%dside=%s".formatted(no, data.getSide());
 
         var p = "";
         var b = "";
@@ -35,16 +32,16 @@ public class Converter {
         }
     }
 
-    public static String finalConvert(MatchResult result) {
+    public static String convertToLPFormat(MatchResult result) {
         var teamResult = getLineUp(result.getTeam1Data()) + "\n" + getLineUp(result.getTeam2Data());
-        String mapResult = """
+        var mapResult = """
                 {{Map
                 %s
                 |length=%s|winner=%s
                 }}
                 """;
         var length = convertLengthFormat(result.getLength());
-        var winner = result.getTeamWinner().equalsIgnoreCase(result.getTeam1Data().get("teamName").getFirst()) ? 1 : 2;
+        var winner = result.getTeamWinner().equalsIgnoreCase(result.getTeam1Data().getTeamName()) ? 1 : 2;
         return mapResult.formatted(teamResult, length, winner);
     }
 }
