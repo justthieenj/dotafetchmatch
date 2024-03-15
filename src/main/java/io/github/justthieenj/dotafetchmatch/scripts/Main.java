@@ -29,6 +29,8 @@ public class Main {
     }
 
     private static void setup() {
+        System.setProperty("browser", "edge");
+        System.setProperty("headless", "true");
         PropertyUtils.initSystemProperties();
         initDriver();
     }
