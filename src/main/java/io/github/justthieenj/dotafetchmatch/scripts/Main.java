@@ -2,6 +2,7 @@ package io.github.justthieenj.dotafetchmatch.scripts;
 
 import io.github.justthieenj.arrakeenselenium.utils.Log;
 import io.github.justthieenj.arrakeenselenium.utils.PropertyUtils;
+import io.github.justthieenj.arrakeenselenium.utils.ReflectUtils;
 import io.github.justthieenj.dotafetchmatch.utils.Converter;
 
 import static io.github.justthieenj.arrakeenselenium.core.Arrakeen.*;
@@ -20,7 +21,7 @@ public class Main {
     }
 
     private static void execute() {
-        var matchId = System.getProperty("matchId", "7630717190");
+        var matchId = ReflectUtils.getProperty("matchId", "7645821730");
         var url = "https://www.dotabuff.com/matches/" + matchId;
         open(url);
         sleep(1000);

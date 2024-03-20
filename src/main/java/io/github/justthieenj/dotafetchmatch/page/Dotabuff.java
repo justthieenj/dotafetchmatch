@@ -1,6 +1,7 @@
 package io.github.justthieenj.dotafetchmatch.page;
 
 import io.github.justthieenj.arrakeenselenium.core.ArrakeenElement;
+import io.github.justthieenj.arrakeenselenium.utils.ReflectUtils;
 import io.github.justthieenj.arrakeenselenium.utils.StringUtils;
 import io.github.justthieenj.dotafetchmatch.dataobject.MatchResult;
 import io.github.justthieenj.dotafetchmatch.dataobject.TeamData;
@@ -56,6 +57,10 @@ public class Dotabuff {
 
         var team1 = getTeam(1);
         var team2 = getTeam(2);
+        if (ReflectUtils.getProperty("revertTeam", false, Boolean.class)) {
+            team1 = getTeam(2);
+            team2 = getTeam(1);
+        }
 
         if (team1.equals(radiantTeam)) {
             m.setTeam1Data(new TeamData(1, radiantTeam, radiant, getHeroes(radiant, pick), getHeroes(radiant, ban)));
